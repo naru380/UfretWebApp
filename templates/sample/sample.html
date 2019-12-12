@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Sample</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'sample/css/sample.css' %}">
+    </head>
+    <body>
+        <form method="post">
+            {% csrf_token %}
+            抽出元URL:
+            <input type="url" name="url" size="30">
+            <input type="submit" name="submit" value="開始">
+        </form>
+        {% if not noURL %}
+            <h3>{{ song_name }} ／ {{ artist_name }}</h3>
+                {% for part in score_parts %}
+                <div class='chord-lylic-block'>
+                    <p class='chord-part'>{{ part.0 }}</p>
+                    <p class='lylic-part'>{{ part.1 }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>
